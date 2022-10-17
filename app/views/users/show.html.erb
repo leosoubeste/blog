@@ -2,13 +2,21 @@
 
 <p>
   <strong>Username:</strong>
-  <%= @user %>
+  <%= @user.username %>
 </p>
 
 <p>
   <strong>Email:</strong>
-  <%= @user.email %>
+  <%= @user.blurred_email %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+<div class="with-margin">
+  <% if @user.posts.empty? %>
+    <span>'No Posts'</span>
+  <% else %>
+    <%= render 'posts/posts', posts: @user.posts %>
+  <% end %>
+</div>
